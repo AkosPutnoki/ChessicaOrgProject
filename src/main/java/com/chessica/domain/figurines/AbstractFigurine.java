@@ -1,19 +1,24 @@
 package com.chessica.domain.figurines;
 
+import com.chessica.domain.Game;
+
 public abstract class AbstractFigurine {
 
-    private int xCoord;
-    private int yCoord;
-    private Color color;
+    protected int xCoord;
+    protected int yCoord;
+    protected Color color;
+    protected Game game;
 
-    public AbstractFigurine(int xCoord, int yCoord, Color color) {
+    public AbstractFigurine(int xCoord, int yCoord, Color color, Game game) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.color = color;
+        this.game = game;
     }
 
     public abstract boolean validateMove(int xTargetCoord, int yTargetCoord);
 
+    public abstract boolean validatePath(int xTargetCoord, int yTargetCoord);
 
     public Color getColor() {
         return color;

@@ -17,7 +17,7 @@ public class Game {
     }
 
     public void moveFigurine(AbstractFigurine figurine, int xCoord, int yCoord){
-        if (figurine.validateMove(xCoord, yCoord)){
+        if (figurine.validatePath(xCoord, yCoord)){
             AbstractFigurine target = gameState[xCoord][yCoord];
             if (target != null && figurine.getColor() != target.getColor()){
                 deadFigurines.add(target);
