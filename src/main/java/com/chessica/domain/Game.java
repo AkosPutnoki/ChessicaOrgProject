@@ -1,6 +1,7 @@
 package com.chessica.domain;
 
 import com.chessica.domain.figurines.AbstractFigurine;
+import com.chessica.domain.figurines.TargetType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Game {
     }
 
     public void moveFigurine(AbstractFigurine figurine, int xCoord, int yCoord){
-        if (figurine.validatePath(xCoord, yCoord)){
+        if (figurine.validatePath(xCoord, yCoord) != TargetType.INVALID){
             AbstractFigurine target = gameState[xCoord][yCoord];
             if (target != null && figurine.getColor() != target.getColor()){
                 deadFigurines.add(target);

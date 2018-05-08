@@ -16,9 +16,9 @@ public abstract class AbstractFigurine {
         this.game = game;
     }
 
-    public abstract boolean validateMove(int xTargetCoord, int yTargetCoord);
+    public abstract TargetType validateMove(int xTargetCoord, int yTargetCoord);
 
-    public abstract boolean validatePath(int xTargetCoord, int yTargetCoord);
+    public abstract TargetType validatePath(int xTargetCoord, int yTargetCoord);
 
     public Color getColor() {
         return color;

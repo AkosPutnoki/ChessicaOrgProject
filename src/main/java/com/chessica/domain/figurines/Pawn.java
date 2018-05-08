@@ -10,42 +10,42 @@ public class Pawn extends AbstractFigurine {
     }
 
     @Override
-    public boolean validateMove(int xTargetCoord, int yTargetCoord) {
+    public TargetType validateMove(int xTargetCoord, int yTargetCoord) {
         if (this.color == Color.BLACK){
             if (xTargetCoord == this.xCoord && game.getGameState()[xTargetCoord][yTargetCoord] == null) {
                 if(yTargetCoord - this.yCoord == 2 && this.yCoord == 1 && game.getGameState()[xTargetCoord][yTargetCoord-1] == null){
-                    return true;
+                    return TargetType.CLEAR;
                 } else if(yTargetCoord - this.yCoord == 1){
-                    return true;
+                    return TargetType.CLEAR;
                 }
 
             }else if (yTargetCoord - this.yCoord == 1 &&
                     Math.abs(xTargetCoord - this.xCoord) == 1 &&
                     (game.getGameState()[xTargetCoord][yTargetCoord] != null &&
                         game.getGameState()[xTargetCoord][yTargetCoord].color == Color.WHITE)){
-                        return true;
+                        return TargetType.ENEMY;
             }
-            return false;
+            return TargetType.INVALID;
         } else {
             if (xTargetCoord == this.xCoord && game.getGameState()[xTargetCoord][yTargetCoord] == null) {
                 if(yTargetCoord - this.yCoord == -2 && this.yCoord == 6  && game.getGameState()[xTargetCoord][yTargetCoord+1] == null){
-                    return true;
+                    return TargetType.CLEAR;
                 } else if(yTargetCoord - this.yCoord == -1){
-                    return true;
+                    return TargetType.CLEAR;
                 }
 
             }else if(yTargetCoord - this.yCoord == -1 &&
                     Math.abs(xTargetCoord - this.xCoord) == 1 &&
                     (game.getGameState()[xTargetCoord][yTargetCoord] != null &&
                             game.getGameState()[xTargetCoord][yTargetCoord].color == Color.BLACK)){
-                    return true;
+                    return TargetType.ENEMY;
             }
-            return false;
+            return TargetType.INVALID;
         }
     }
 
     @Override
-    public boolean validatePath(int xTargetCoord, int yTargetCoord) {
+    public TargetType validatePath(int xTargetCoord, int yTargetCoord) {
         return validateMove(xTargetCoord, yTargetCoord);
     }
 }
