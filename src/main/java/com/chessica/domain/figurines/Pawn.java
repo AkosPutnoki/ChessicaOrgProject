@@ -12,34 +12,34 @@ public class Pawn extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validateMove(int xTargetCoord, int yTargetCoord) {
+    public TargetType validateMove(int yTargetCoord, int xTargetCoord) {
         if (this.color == Color.BLACK){
-            if (xTargetCoord == this.xCoord && game.getGameState()[xTargetCoord][yTargetCoord] == null) {
-                if(yTargetCoord - this.yCoord == 2 && this.yCoord == 1 && game.getGameState()[xTargetCoord][yTargetCoord-1] == null){
+            if (yTargetCoord == this.xCoord && game.getGameState()[yTargetCoord][xTargetCoord] == null) {
+                if(xTargetCoord - this.yCoord == 2 && this.yCoord == 1 && game.getGameState()[yTargetCoord][xTargetCoord -1] == null){
                     return TargetType.CLEAR;
-                } else if(yTargetCoord - this.yCoord == 1){
+                } else if(xTargetCoord - this.yCoord == 1){
                     return TargetType.CLEAR;
                 }
 
-            }else if (yTargetCoord - this.yCoord == 1 &&
-                    Math.abs(xTargetCoord - this.xCoord) == 1 &&
-                    (game.getGameState()[xTargetCoord][yTargetCoord] != null &&
-                        game.getGameState()[xTargetCoord][yTargetCoord].color == Color.WHITE)){
+            }else if (xTargetCoord - this.yCoord == 1 &&
+                    Math.abs(yTargetCoord - this.xCoord) == 1 &&
+                    (game.getGameState()[yTargetCoord][xTargetCoord] != null &&
+                        game.getGameState()[yTargetCoord][xTargetCoord].color == Color.WHITE)){
                         return TargetType.ENEMY;
             }
             return TargetType.INVALID;
         } else {
-            if (xTargetCoord == this.xCoord && game.getGameState()[xTargetCoord][yTargetCoord] == null) {
-                if(yTargetCoord - this.yCoord == -2 && this.yCoord == 6  && game.getGameState()[xTargetCoord][yTargetCoord+1] == null){
+            if (yTargetCoord == this.xCoord && game.getGameState()[yTargetCoord][xTargetCoord] == null) {
+                if(xTargetCoord - this.yCoord == -2 && this.yCoord == 6  && game.getGameState()[yTargetCoord][xTargetCoord +1] == null){
                     return TargetType.CLEAR;
-                } else if(yTargetCoord - this.yCoord == -1){
+                } else if(xTargetCoord - this.yCoord == -1){
                     return TargetType.CLEAR;
                 }
 
-            }else if(yTargetCoord - this.yCoord == -1 &&
-                    Math.abs(xTargetCoord - this.xCoord) == 1 &&
-                    (game.getGameState()[xTargetCoord][yTargetCoord] != null &&
-                            game.getGameState()[xTargetCoord][yTargetCoord].color == Color.BLACK)){
+            }else if(xTargetCoord - this.yCoord == -1 &&
+                    Math.abs(yTargetCoord - this.xCoord) == 1 &&
+                    (game.getGameState()[yTargetCoord][xTargetCoord] != null &&
+                            game.getGameState()[yTargetCoord][xTargetCoord].color == Color.BLACK)){
                     return TargetType.ENEMY;
             }
             return TargetType.INVALID;
@@ -47,7 +47,7 @@ public class Pawn extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validatePath(int xTargetCoord, int yTargetCoord) {
-        return validateMove(xTargetCoord, yTargetCoord);
+    public TargetType validatePath(int yTargetCoord, int xTargetCoord) {
+        return validateMove(yTargetCoord, xTargetCoord);
     }
 }

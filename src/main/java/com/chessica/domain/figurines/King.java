@@ -11,13 +11,13 @@ public class King extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validateMove(int xTargetCoord, int yTargetCoord) {
-        if(Math.abs(this.xCoord-xTargetCoord) <=1 && Math.abs(this.yCoord-yTargetCoord) <= 1){
-            if(game.getGameState()[xTargetCoord][yTargetCoord] != null &&
-                    game.getGameState()[xTargetCoord][yTargetCoord].getColor() != this.color){
+    public TargetType validateMove(int yTargetCoord, int xTargetCoord) {
+        if(Math.abs(this.xCoord- yTargetCoord) <=1 && Math.abs(this.yCoord- xTargetCoord) <= 1){
+            if(game.getGameState()[yTargetCoord][xTargetCoord] != null &&
+                    game.getGameState()[yTargetCoord][xTargetCoord].getColor() != this.color){
                 return TargetType.ENEMY;
             }
-            if(game.getGameState()[xTargetCoord][yTargetCoord] == null){
+            if(game.getGameState()[yTargetCoord][xTargetCoord] == null){
                 return TargetType.CLEAR;
             }
         }
@@ -25,7 +25,7 @@ public class King extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validatePath(int xTargetCoord, int yTargetCoord) {
-        return validateMove(xTargetCoord, yTargetCoord);
+    public TargetType validatePath(int yTargetCoord, int xTargetCoord) {
+        return validateMove(yTargetCoord, xTargetCoord);
     }
 }

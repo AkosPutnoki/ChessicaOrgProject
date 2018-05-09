@@ -4,7 +4,9 @@ import com.chessica.domain.Game;
 import com.chessica.domain.figurines.enums.Color;
 import com.chessica.domain.figurines.enums.TargetType;
 
-public abstract class AbstractFigurine {
+import java.io.Serializable;
+
+public abstract class AbstractFigurine implements Serializable {
 
     protected int xCoord;
     protected int yCoord;
@@ -18,9 +20,9 @@ public abstract class AbstractFigurine {
         this.game = game;
     }
 
-    public abstract TargetType validateMove(int xTargetCoord, int yTargetCoord);
+    public abstract TargetType validateMove(int yTargetCoord, int xTargetCoord);
 
-    public abstract TargetType validatePath(int xTargetCoord, int yTargetCoord);
+    public abstract TargetType validatePath(int yTargetCoord, int xTargetCoord);
 
     public Color getColor() {
         return color;

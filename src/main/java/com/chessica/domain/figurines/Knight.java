@@ -11,13 +11,13 @@ public class Knight extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validateMove(int xTargetCoord, int yTargetCoord) {
-        if ((Math.abs(xTargetCoord - this.xCoord) == 1 && Math.abs(yTargetCoord - this.yCoord) == 2)
-            || (Math.abs(xTargetCoord - this.xCoord) == 2 && Math.abs(yTargetCoord - this.yCoord) == 1)){
-            if (game.getGameState()[xTargetCoord][yTargetCoord] != null &&
-                    game.getGameState()[xTargetCoord][yTargetCoord].color != this.color){
+    public TargetType validateMove(int yTargetCoord, int xTargetCoord) {
+        if ((Math.abs(yTargetCoord - this.xCoord) == 1 && Math.abs(xTargetCoord - this.yCoord) == 2)
+            || (Math.abs(yTargetCoord - this.xCoord) == 2 && Math.abs(xTargetCoord - this.yCoord) == 1)){
+            if (game.getGameState()[yTargetCoord][xTargetCoord] != null &&
+                    game.getGameState()[yTargetCoord][xTargetCoord].color != this.color){
                 return TargetType.ENEMY;
-            } else if (game.getGameState()[xTargetCoord][yTargetCoord] == null){
+            } else if (game.getGameState()[yTargetCoord][xTargetCoord] == null){
                 return TargetType.CLEAR;
             }
         }
@@ -25,7 +25,7 @@ public class Knight extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validatePath(int xTargetCoord, int yTargetCoord) {
-        return validateMove(xTargetCoord, yTargetCoord);
+    public TargetType validatePath(int yTargetCoord, int xTargetCoord) {
+        return validateMove(yTargetCoord, xTargetCoord);
     }
 }

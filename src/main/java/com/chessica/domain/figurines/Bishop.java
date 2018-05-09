@@ -11,12 +11,12 @@ public class Bishop extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validateMove(int xTargetCoord, int yTargetCoord) {
-        if(Math.abs(this.xCoord-xTargetCoord) == Math.abs(this.yCoord-yTargetCoord)){
-            if(game.getGameState()[xTargetCoord][yTargetCoord] != null &&
-                    game.getGameState()[xTargetCoord][yTargetCoord].getColor() != this.color) {
+    public TargetType validateMove(int yTargetCoord, int xTargetCoord) {
+        if(Math.abs(this.xCoord- yTargetCoord) == Math.abs(this.yCoord- xTargetCoord)){
+            if(game.getGameState()[yTargetCoord][xTargetCoord] != null &&
+                    game.getGameState()[yTargetCoord][xTargetCoord].getColor() != this.color) {
                 return TargetType.ENEMY;
-            } else if(game.getGameState()[xTargetCoord][yTargetCoord] == null){
+            } else if(game.getGameState()[yTargetCoord][xTargetCoord] == null){
                 return TargetType.CLEAR;
             }
         }
@@ -24,13 +24,13 @@ public class Bishop extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validatePath(int xTargetCoord, int yTargetCoord) {
-        if(validateMove(xTargetCoord, yTargetCoord) == TargetType.INVALID){
+    public TargetType validatePath(int yTargetCoord, int xTargetCoord) {
+        if(validateMove(yTargetCoord, xTargetCoord) == TargetType.INVALID){
             return TargetType.INVALID;
         }
 
-        int xDiff = xTargetCoord-this.xCoord;
-        int yDiff = yTargetCoord-this.yCoord;
+        int xDiff = yTargetCoord -this.xCoord;
+        int yDiff = xTargetCoord -this.yCoord;
 
         if(xDiff > 0){
             if(yDiff > 0){
@@ -63,6 +63,6 @@ public class Bishop extends AbstractFigurine {
             }
 
         }
-        return validateMove(xTargetCoord, yTargetCoord);
+        return validateMove(yTargetCoord, xTargetCoord);
     }
 }
