@@ -1,6 +1,8 @@
 package com.chessica.domain.figurines;
 
 import com.chessica.domain.Game;
+import com.chessica.domain.figurines.enums.Color;
+import com.chessica.domain.figurines.enums.TargetType;
 
 public abstract class AbstractFigurine {
 

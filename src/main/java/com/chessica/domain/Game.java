@@ -1,7 +1,7 @@
 package com.chessica.domain;
 
 import com.chessica.domain.figurines.AbstractFigurine;
-import com.chessica.domain.figurines.TargetType;
+import com.chessica.domain.figurines.enums.TargetType;
 
 import java.util.ArrayList;
 import java.util.List;

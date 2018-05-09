@@ -1,8 +1,8 @@
 package com.chessica.domain.figurines;
 
 import com.chessica.domain.Game;
-
-import java.security.cert.X509Certificate;
+import com.chessica.domain.figurines.enums.Color;
+import com.chessica.domain.figurines.enums.TargetType;
 
 public class Bishop extends AbstractFigurine {
 
