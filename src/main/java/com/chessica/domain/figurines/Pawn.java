@@ -6,7 +6,7 @@ import com.chessica.domain.figurines.enums.TargetType;
 
 public class Pawn extends AbstractFigurine {
 
-    public Pawn(Game game,int xCoord, int yCoord, Color color) {
+    public Pawn(int xCoord, int yCoord, Color color, Game game) {
         super(xCoord, yCoord, color, game);
 
     }
