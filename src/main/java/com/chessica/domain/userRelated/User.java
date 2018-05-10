@@ -1,19 +1,26 @@
 package com.chessica.domain.userRelated;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Proxy;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "user_entity")
+@Proxy(lazy=false)
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String email;
     private String password;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Match> matches = new ArrayList<>();
 
     public User(String name, String email, String password) {
         this.name = name;
@@ -55,4 +62,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
+    }
+
 }

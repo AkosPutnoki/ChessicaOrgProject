@@ -1,24 +1,39 @@
 package com.chessica.domain.userRelated;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.chessica.domain.Game;
+import com.chessica.util.GameSerializer;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Proxy;
+
+import javax.persistence.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "`match`")
+@Proxy(lazy=false)
 public class Match {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private User firstUser;
-    private User secondUser;
+
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @ManyToMany
+    private List<User> users = new ArrayList<>();
+
     private byte[] game;
 
     public Match(User firstUser, User secondUser, byte[] game) {
-        this.firstUser = firstUser;
-        this.secondUser = secondUser;
+        users.add(firstUser);
+        users.add(secondUser);
+        firstUser.getMatches().add(this);
+        secondUser.getMatches().add(this);
         this.game = game;
+    }
+
+    public Match() {
     }
 
     public long getId() {
@@ -29,24 +44,20 @@ public class Match {
         this.id = id;
     }
 
-    public User getFirstUser() {
-        return firstUser;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setFirstUser(User firstUser) {
-        this.firstUser = firstUser;
-    }
-
-    public User getSecondUser() {
-        return secondUser;
-    }
-
-    public void setSecondUser(User secondUser) {
-        this.secondUser = secondUser;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public byte[] getGame() {
         return game;
+    }
+
+    public Game getDeserializedGame() throws IOException {
+        return GameSerializer.deSerialize(game);
     }
 
     public void setGame(byte[] game) {
