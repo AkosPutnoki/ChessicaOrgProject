@@ -63,11 +63,12 @@ public class KnightTest {
     }
 
     @Test
-    public void knightValidateMoveWithDifferentRook(){
+    public void knightValidateMoveWithDifferentKnight(){
         pieceToTest = testGame.getGameState()[7][6];
         assertEquals(TargetType.CLEAR, pieceToTest.validateMove(5, 5));
         assertEquals(TargetType.INVALID, pieceToTest.validateMove(6, 4));
         assertEquals(TargetType.INVALID, pieceToTest.validateMove(4, 4));
     }
 
+    // TODO validatePath
 }
