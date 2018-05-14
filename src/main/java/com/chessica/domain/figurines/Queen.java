@@ -11,18 +11,18 @@ public class Queen extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validateMove(int yTargetCoord, int xTargetCoord) {
-        if(Math.abs(this.xCoord- yTargetCoord) == Math.abs(this.yCoord- xTargetCoord)){
-            if(game.getGameState()[yTargetCoord][xTargetCoord] != null &&
-                    game.getGameState()[yTargetCoord][xTargetCoord].getColor() != this.color) {
+    public TargetType validateMove(int xTargetCoord, int yTargetCoord) {
+        if(Math.abs(this.xCoord- xTargetCoord) == Math.abs(this.yCoord- yTargetCoord)){
+            if(game.getGameState()[xTargetCoord][yTargetCoord] != null &&
+                    game.getGameState()[xTargetCoord][yTargetCoord].getColor() != this.color) {
                 return TargetType.ENEMY;
-            } else if(game.getGameState()[yTargetCoord][xTargetCoord] == null){
+            } else if(game.getGameState()[xTargetCoord][yTargetCoord] == null){
                 return TargetType.CLEAR;
             }
-        } else if ((xTargetCoord != this.getyCoord() && yTargetCoord == this.getxCoord())
-                || (yTargetCoord != this.getxCoord() && xTargetCoord == this.getyCoord())) {
+        } else if ((yTargetCoord != this.getyCoord() && xTargetCoord == this.getxCoord())
+                || (xTargetCoord != this.getxCoord() && yTargetCoord == this.getyCoord())) {
             if ((game.getGameState()[yTargetCoord][xTargetCoord] != null &&
-                    game.getGameState()[yTargetCoord][xTargetCoord].color != this.color)) {
+                    game.getGameState()[yTargetCoord][xTargetCoord].getColor() != this.color)) {
                 return TargetType.ENEMY;
             } else if(game.getGameState()[yTargetCoord][xTargetCoord] == null){
                 return TargetType.CLEAR;
