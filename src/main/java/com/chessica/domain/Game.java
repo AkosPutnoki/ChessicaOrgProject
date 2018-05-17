@@ -43,13 +43,13 @@ public class Game implements Serializable {
 
     }
 
-    public void moveFigurine(AbstractFigurine figurine, int xCoord, int yCoord) {
-        TargetType result = figurine.validatePath(xCoord, yCoord);
+    public void moveFigurine(AbstractFigurine figurine, int yCoord, int xCoord) {
+        TargetType result = figurine.validatePath(yCoord, xCoord);
         if (result == TargetType.ENEMY) {
-            deadFigurines.add(gameState[xCoord][yCoord]);
-            alterPosition(figurine, xCoord, yCoord);
+            deadFigurines.add(gameState[yCoord][xCoord]);
+            alterPosition(figurine, yCoord, xCoord);
         } else if (result == TargetType.CLEAR) {
-            alterPosition(figurine, xCoord, yCoord);
+            alterPosition(figurine, yCoord, xCoord);
         }
     }
 
