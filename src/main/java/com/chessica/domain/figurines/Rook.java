@@ -11,13 +11,13 @@ public class Rook extends AbstractFigurine {
     }
 
     @Override
-    public TargetType validateMove(int yTargetCoord, int xTargetCoord) {
-        if ((xTargetCoord != this.getyCoord() && yTargetCoord == this.getxCoord())
-                || (yTargetCoord != this.getxCoord() && xTargetCoord == this.getyCoord())) {
-            if ((game.getGameState()[yTargetCoord][xTargetCoord] != null &&
-                    game.getGameState()[yTargetCoord][xTargetCoord].color != this.color)) {
+    public TargetType validateMove(int xTargetCoord, int yTargetCoord) {
+        if ((yTargetCoord != this.getyCoord() && xTargetCoord == this.getxCoord())
+                || (xTargetCoord != this.getxCoord() && yTargetCoord == this.getyCoord())) {
+            if ((game.getGameState()[xTargetCoord][yTargetCoord] != null &&
+                    game.getGameState()[xTargetCoord][yTargetCoord].getColor() != this.color)) {
                 return TargetType.ENEMY;
-            } else if(game.getGameState()[yTargetCoord][xTargetCoord] == null){
+            } else if(game.getGameState()[xTargetCoord][yTargetCoord] == null){
                 return TargetType.CLEAR;
             }
         }

@@ -1,6 +1,7 @@
 package com.chessica.domain.userRelated;
 
 import com.chessica.domain.Game;
+import com.chessica.domain.figurines.enums.ResultType;
 import com.chessica.util.GameSerializer;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Proxy;
@@ -23,6 +24,7 @@ public class Match {
     @ManyToMany
     private List<User> users = new ArrayList<>();
 
+    private ResultType result;
     private byte[] game;
 
     public Match(User firstUser, User secondUser, byte[] game) {
@@ -31,6 +33,7 @@ public class Match {
         firstUser.getMatches().add(this);
         secondUser.getMatches().add(this);
         this.game = game;
+        this.result = ResultType.PENDING;
     }
 
     public Match() {

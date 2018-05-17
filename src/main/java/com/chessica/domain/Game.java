@@ -33,7 +33,7 @@ public class Game implements Serializable {
         gameState[7][6] = new Knight(6,7, Color.WHITE, this);
         gameState[7][2] = new Bishop(2,7, Color.WHITE, this);
         gameState[7][5] = new Bishop(5,7, Color.WHITE, this);
-        gameState[7][6] = new Queen(3,7, Color.WHITE, this);
+        gameState[7][3] = new Queen(3,7, Color.WHITE, this);
         gameState[7][4] = new King(4,7, Color.WHITE, this);
 
         for(int i = 0; i< TABLESIZE; i++){
