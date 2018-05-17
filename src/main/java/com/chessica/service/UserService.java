@@ -32,4 +32,8 @@ public class UserService {
         throw new FailedDataVerificationException("Login failed");
 
     }
+
+    public User getUserById(long userId){
+        return userRepository.findOne(userId);
+    }
 }
