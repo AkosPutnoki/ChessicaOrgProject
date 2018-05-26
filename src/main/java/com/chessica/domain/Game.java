@@ -11,6 +11,8 @@ import java.util.List;
 public class Game implements Serializable {
 
     private static final int TABLESIZE = 8;
+    private AbstractFigurine whiteKing;
+    private AbstractFigurine blackKing;
     private AbstractFigurine[][] gameState;
     private List<AbstractFigurine> deadFigurines;
 
@@ -25,7 +27,8 @@ public class Game implements Serializable {
         gameState[0][2] = new Bishop(2,0, Color.BLACK, this);
         gameState[0][5] = new Bishop(5,0, Color.BLACK, this);
         gameState[0][3] = new Queen(3,0, Color.BLACK, this);
-        gameState[0][4] = new King(4,0, Color.BLACK, this);
+        blackKing = new King(4,0, Color.BLACK, this);
+        gameState[0][4] = blackKing;
 
         gameState[7][0] = new Rook(0,7, Color.WHITE, this);
         gameState[7][7] = new Rook(7,7, Color.WHITE, this);
@@ -34,7 +37,8 @@ public class Game implements Serializable {
         gameState[7][2] = new Bishop(2,7, Color.WHITE, this);
         gameState[7][5] = new Bishop(5,7, Color.WHITE, this);
         gameState[7][3] = new Queen(3,7, Color.WHITE, this);
-        gameState[7][4] = new King(4,7, Color.WHITE, this);
+        whiteKing = new King(4,7, Color.WHITE, this);
+        gameState[7][4] = whiteKing;
 
         for(int i = 0; i< TABLESIZE; i++){
             gameState[1][i] = new Pawn(i, 1, Color.BLACK, this);
@@ -62,5 +66,21 @@ public class Game implements Serializable {
 
     public AbstractFigurine[][] getGameState() {
         return gameState;
+    }
+
+    public AbstractFigurine getWhiteKing() {
+        return whiteKing;
+    }
+
+    public void setWhiteKing(AbstractFigurine whiteKing) {
+        this.whiteKing = whiteKing;
+    }
+
+    public AbstractFigurine getBlackKing() {
+        return blackKing;
+    }
+
+    public void setBlackKing(AbstractFigurine blackKing) {
+        this.blackKing = blackKing;
     }
 }
