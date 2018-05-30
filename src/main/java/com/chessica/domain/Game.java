@@ -58,9 +58,9 @@ public class Game implements Serializable {
     }
 
     private void alterPosition(AbstractFigurine figurine, int xCoord, int yCoord){
-        gameState[figurine.getxCoord()][figurine.getyCoord()] = null;
-        figurine.setxCoord(xCoord);
-        figurine.setyCoord(yCoord);
+        gameState[figurine.getyCoord()][figurine.getxCoord()] = null;
+        figurine.setyCoord(xCoord);
+        figurine.setxCoord(yCoord);
         gameState[xCoord][yCoord] = figurine;
     }
 

@@ -6,18 +6,20 @@ import com.chessica.domain.figurines.enums.TargetType;
 
 public class Bishop extends AbstractFigurine {
 
-    public Bishop(int xCoord, int yCoord, Color color, Game game) {
-        super(xCoord, yCoord, color, game);
+    public Bishop(int yCoord, int xCoord, Color color, Game game) {
+        super(yCoord, xCoord, color, game);
     }
 
     @Override
-    public TargetType validateMove(int xTargetCoord, int yTargetCoord) {
-        if(Math.abs(this.xCoord- xTargetCoord) == Math.abs(this.yCoord- yTargetCoord)){
-            if(game.getGameState()[xTargetCoord][yTargetCoord] != null &&
-                    game.getGameState()[xTargetCoord][yTargetCoord].getColor() != this.color) {
+    public TargetType validateMove(int yTargetCoord, int xTargetCoord) {
+        if(Math.abs(this.yCoord - yTargetCoord) == Math.abs(this.xCoord - xTargetCoord)){
+            if(game.getGameState()[yTargetCoord][xTargetCoord] != null &&
+                    game.getGameState()[yTargetCoord][xTargetCoord].getColor() != this.color) {
                 return TargetType.ENEMY;
-            } else if(game.getGameState()[xTargetCoord][yTargetCoord] == null){
+            } else if(game.getGameState()[yTargetCoord][xTargetCoord] == null){
                 return TargetType.CLEAR;
+            } else if(game.getGameState()[yTargetCoord][xTargetCoord].getColor() == this.color){
+                return TargetType.FRIEND;
             }
         }
         return TargetType.INVALID;
@@ -29,19 +31,19 @@ public class Bishop extends AbstractFigurine {
             return TargetType.INVALID;
         }
 
-        int xDiff = yTargetCoord -this.xCoord;
-        int yDiff = xTargetCoord -this.yCoord;
+        int xDiff = yTargetCoord -this.yCoord;
+        int yDiff = xTargetCoord -this.xCoord;
 
         if(xDiff > 0){
             if(yDiff > 0){
                 for(int i = 1; i < xDiff; i++){
-                    if(validateMove(this.xCoord+i, this.yCoord+i) != TargetType.CLEAR){
+                    if(validateMove(this.yCoord +i, this.xCoord +i) != TargetType.CLEAR){
                         return TargetType.INVALID;
                     }
                 }
             } else if(yDiff < 0){
                 for(int i = 1; i < xDiff; i++){
-                    if(validateMove(this.xCoord+i, this.yCoord-i) != TargetType.CLEAR){
+                    if(validateMove(this.yCoord +i, this.xCoord -i) != TargetType.CLEAR){
                         return TargetType.INVALID;
                     }
                 }
@@ -50,13 +52,13 @@ public class Bishop extends AbstractFigurine {
         } else if(xDiff < 0) {
             if (yDiff > 0) {
                 for (int i = 1; i < xDiff; i++) {
-                    if (validateMove(this.xCoord - i, this.yCoord + i) != TargetType.CLEAR) {
+                    if (validateMove(this.yCoord - i, this.xCoord + i) != TargetType.CLEAR) {
                         return TargetType.INVALID;
                     }
                 }
             } else if (yDiff < 0) {
                 for (int i = 1; i < xDiff; i++) {
-                    if (validateMove(this.xCoord - i, this.yCoord - i) != TargetType.CLEAR) {
+                    if (validateMove(this.yCoord - i, this.xCoord - i) != TargetType.CLEAR) {
                         return TargetType.INVALID;
                     }
                 }

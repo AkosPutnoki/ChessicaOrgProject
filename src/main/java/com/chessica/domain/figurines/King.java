@@ -6,19 +6,21 @@ import com.chessica.domain.figurines.enums.TargetType;
 
 public class King extends AbstractFigurine {
 
-    public King(int xCoord, int yCoord, Color color, Game game) {
-        super(xCoord, yCoord, color, game);
+    public King(int yCoord, int xCoord, Color color, Game game) {
+        super(yCoord, xCoord, color, game);
     }
+
 
     @Override
     public TargetType validateMove(int yTargetCoord, int xTargetCoord) {
-        if(Math.abs(this.xCoord- yTargetCoord) <=1 && Math.abs(this.yCoord- xTargetCoord) <= 1){
-            if(game.getGameState()[yTargetCoord][xTargetCoord] != null &&
-                    game.getGameState()[yTargetCoord][xTargetCoord].getColor() != this.color){
+        if (Math.abs(this.yCoord - yTargetCoord) <= 1 && Math.abs(this.xCoord - xTargetCoord) <= 1) {
+            if (game.getGameState()[yTargetCoord][xTargetCoord] != null &&
+                    game.getGameState()[yTargetCoord][xTargetCoord].getColor() != this.color) {
                 return TargetType.ENEMY;
-            }
-            if(game.getGameState()[yTargetCoord][xTargetCoord] == null){
+            } else if (game.getGameState()[yTargetCoord][xTargetCoord] == null) {
                 return TargetType.CLEAR;
+            } else if (game.getGameState()[yTargetCoord][xTargetCoord].getColor() == this.color) {
+                return TargetType.FRIEND;
             }
         }
         return TargetType.INVALID;

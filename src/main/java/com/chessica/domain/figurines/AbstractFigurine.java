@@ -8,14 +8,14 @@ import java.io.Serializable;
 
 public abstract class AbstractFigurine implements Serializable {
 
-    protected int xCoord;
     protected int yCoord;
+    protected int xCoord;
     protected Color color;
     protected Game game;
 
-    public AbstractFigurine(int xCoord, int yCoord, Color color, Game game) {
-        this.xCoord = xCoord;
+    public AbstractFigurine(int yCoord, int xCoord, Color color, Game game) {
         this.yCoord = yCoord;
+        this.xCoord = xCoord;
         this.color = color;
         this.game = game;
     }
@@ -28,19 +28,19 @@ public abstract class AbstractFigurine implements Serializable {
         return color;
     }
 
-    public int getxCoord() {
-        return xCoord;
-    }
-
     public int getyCoord() {
         return yCoord;
     }
 
-    public void setxCoord(int xCoord) {
-        this.xCoord = xCoord;
+    public int getxCoord() {
+        return xCoord;
     }
 
     public void setyCoord(int yCoord) {
         this.yCoord = yCoord;
+    }
+
+    public void setxCoord(int xCoord) {
+        this.xCoord = xCoord;
     }
 }
